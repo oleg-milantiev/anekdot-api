@@ -11,7 +11,7 @@
 - Фильтр по словам в тексте
 - Создание картинок с текстом для постов в ВК/Инстаграм/Телеграм/etc
 
-Примеры картинок в Телеграм боте [@anekdtrotica](https://t.me/anekdrotica "@anekdtrotica")
+Примеры картинок в Телеграм канале [@anekdtrotica](https://t.me/anekdrotica "@anekdtrotica")
 
 ## Установка
 С помощью Composer:
