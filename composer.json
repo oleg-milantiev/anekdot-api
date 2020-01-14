@@ -1,0 +1,7 @@
+{
+    "name": "aethletic/anekdot-api",
+    "description": "Anekdot.ru Wrapper (Unoffical API)",
+    "type": "library",
+    "license": "MIT",
+    "require": {}
+}
