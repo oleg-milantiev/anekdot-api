@@ -1,4 +1,4 @@
-## Anekdot.ru Wrapper (Unoffical API)
+## Anekdot.ru 🤣 Wrapper (Unoffical API)
 
 *Библиотека в разработке.*
 
