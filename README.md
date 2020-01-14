@@ -68,13 +68,13 @@ $res = Anekdot::filter('text', $res, [
 
 // Создать картинку с текстом
 Anekdot::createImage($res[0]['text'], __DIR__ . '/test.jpg', [
-	'mode' 				=> 'smart',
-	'font' 				=> __DIR__ . '/src/assets/fonts/font.ttf',
+	'mode' 			=> 'smart',
+	'font' 			=> __DIR__ . '/src/assets/fonts/font.ttf',
 	'text_size' 		=> '30',
 	'background_color' 	=> '#fff',
 	'text_color' 		=> '#4f5252',
-	'padding' 			=> '60',
-	'width' 			=> '720',
+	'padding' 		=> '60',
+	'width'			=> '720',
 	'line_height'		=> '55',
 ]);
 ```
