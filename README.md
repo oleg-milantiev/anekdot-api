@@ -13,6 +13,15 @@
 
 Примеры картинок в Телеграм боте [@anekdtrotica](https://t.me/anekdrotica "@anekdtrotica")
 
+## Установка
+С помощью Composer:
+
+`$ composer require aethletic/anekdot-api`
+
+Или скачать репозиторий, либо склонировать:
+
+`$ git clone https://github.com/aethletic/anekdot-api.git`
+
 ## Формат данных
     Array
     (
@@ -34,7 +43,7 @@
     
         [author] => ёмоё
     )
-
+    
 ## Примеры
 ```php
 // 15 анекдотов без политики за 01.07.2017 в json формате
