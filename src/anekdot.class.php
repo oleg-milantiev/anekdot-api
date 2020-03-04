@@ -1,12 +1,11 @@
 <?php
-
 require_once __DIR__ . '/libs/image.class.php';
 
 class Anekdot
 {
 	private const BASE_URL_PATH = 'https://www.anekdot.ru';
 	private const DEFAULT_OUTPUT_TYPE = 'array'; // array, json
-
+	
 	/**
 	 * Анекдоты без политики.
 	 *
@@ -27,13 +26,14 @@ class Anekdot
 	{
 		$PATH = '/last/non_burning/';
 
-		if ($count > 15 || $count <= 0) {
+		if ($count > 15 || $count <= 0)
+		{
 			self::response(self::message('$count должен быть от 1 до 15.', 2));
 		}
 
-		$day   = $day == null ? date("d") : $day;
+		$day = $day == null ? date("d") : $day;
 		$month = $month == null ? date("m") : $month;
-		$year  = $year == null ? date("Y") : $year;
+		$year = $year == null ? date("Y") : $year;
 
 		$DATE = $year . '-' . $month . '-' . $day;
 
@@ -43,7 +43,8 @@ class Anekdot
 
 		$data = [];
 
-		foreach ($response[0] as $k => $post) {
+		foreach ($response[0] as $k => $post)
+		{
 
 			preg_match_all('/<div class="text">(.+?)<\/div>/mi', $post, $text);
 			preg_match_all('/<div class="num">(.+?)<\/div>/mi', $post, $rating);
@@ -53,12 +54,15 @@ class Anekdot
 
 			$tags = strip_tags($tags[1][0]);
 
-			if (stripos($tags, ',') !== false) {
+			if (stripos($tags, ',') !== false)
+			{
 				$tags = explode(',', $tags);
 				$tags = array_map('trim', $tags);
 				$tags = array_map('mb_strtolower', $tags);
-			} else {
-				$tags = [mb_strtolower(trim($tags))];
+			}
+			else
+			{
+				$tags = [mb_strtolower(trim($tags)) ];
 			}
 
 			$date = "$day.$month.$year";
@@ -69,15 +73,15 @@ class Anekdot
 			$text = str_ireplace('&quot;', '"', $text);
 			$text = str_replace('<br>', "\n", $text);
 
-			$data[$k]['id']				= strip_tags($id[1][0]);
-			$data[$k]['date']['full']	= $date;
-			$data[$k]['date']['day']	= $day;
-			$data[$k]['date']['month']	= $month;
-			$data[$k]['date']['year']	= $year;
-			$data[$k]['text']			= $text;
-			$data[$k]['rating'] 		= strip_tags($rating[1][0]);
-			$data[$k]['tags']			= $tags;
-			$data[$k]['author'] 		= strip_tags($author[1][0]);
+			$data[$k]['id'] = strip_tags($id[1][0]);
+			$data[$k]['date']['full'] = $date;
+			$data[$k]['date']['day'] = $day;
+			$data[$k]['date']['month'] = $month;
+			$data[$k]['date']['year'] = $year;
+			$data[$k]['text'] = $text;
+			$data[$k]['rating'] = strip_tags($rating[1][0]);
+			$data[$k]['tags'] = $tags;
+			$data[$k]['author'] = strip_tags($author[1][0]);
 		}
 
 		$data = array_shift(array_chunk($data, $count));
@@ -110,7 +114,7 @@ class Anekdot
 	 *		                    [0] => девушки
 	 *		                    [1] => пошлые
 	 *		                )
-     *
+	 *
 	 *		            [author] => Леонид Хлыновский
 	 *		        )
 	 *		)
@@ -124,7 +128,8 @@ class Anekdot
 	{
 		$PATH = '/random/anekdot/';
 
-		if ($count > 21 || $count <= 0) {
+		if ($count > 21 || $count <= 0)
+		{
 			self::response(self::message('$count должен быть от 1 до 21.', 2));
 		}
 
@@ -134,7 +139,8 @@ class Anekdot
 
 		$data = [];
 
-		foreach ($response[0] as $k => $post) {
+		foreach ($response[0] as $k => $post)
+		{
 
 			preg_match_all('/<p class="title">(.+?)<\/a>/mi', $post, $date);
 			preg_match_all('/<div class="text">(.+?)<\/div>/mi', $post, $text);
@@ -143,15 +149,17 @@ class Anekdot
 			preg_match_all('/<\/span>(.+?)<\/a><\/div>/mi', $post, $author);
 			preg_match_all('/<a href="\/id\/(.+?)\//mi', $post, $id);
 
-
 			$tags = strip_tags($tags[1][0]);
 
-			if (stripos($tags, ',') !== false) {
+			if (stripos($tags, ',') !== false)
+			{
 				$tags = explode(',', $tags);
 				$tags = array_map('trim', $tags);
 				$tags = array_map('mb_strtolower', $tags);
-			} else {
-				$tags = [mb_strtolower(trim($tags))];
+			}
+			else
+			{
+				$tags = [mb_strtolower(trim($tags)) ];
 			}
 
 			$date = strip_tags($date[1][0]);
@@ -163,15 +171,15 @@ class Anekdot
 			$text = str_ireplace('&quot;', '"', $text);
 			$text = str_replace('<br>', "\n", $text);
 
-			$data[$k]['id']				= strip_tags($id[1][0]);
-			$data[$k]['date']['full']	= $date;
-			$data[$k]['date']['day']	= $day;
-			$data[$k]['date']['month']	= $month;
-			$data[$k]['date']['year']	= $year;
-			$data[$k]['text']			= $text;
-			$data[$k]['rating'] 		= strip_tags($rating[1][0]);
-			$data[$k]['tags']			= $tags;
-			$data[$k]['author'] 		= strip_tags($author[1][0]);
+			$data[$k]['id'] = strip_tags($id[1][0]);
+			$data[$k]['date']['full'] = $date;
+			$data[$k]['date']['day'] = $day;
+			$data[$k]['date']['month'] = $month;
+			$data[$k]['date']['year'] = $year;
+			$data[$k]['text'] = $text;
+			$data[$k]['rating'] = strip_tags($rating[1][0]);
+			$data[$k]['tags'] = $tags;
+			$data[$k]['author'] = strip_tags($author[1][0]);
 		}
 
 		$data = array_shift(array_chunk($data, $count));
@@ -194,19 +202,28 @@ class Anekdot
 	 */
 	public static function filter($type = 'tags', $data = [], $blacklist = [], $output = self::DEFAULT_OUTPUT_TYPE)
 	{
-		if (count($data) == 0) {
+		if (count($data) == 0)
+		{
 			self::response(self::message('Аргумент $data пустой.', 2));
 		}
 
-		if (count($blacklist) == 0) {
+		if (count($blacklist) == 0)
+		{
 			self::response(self::message('Аргумент $blacklist пустой.', 2));
 		}
 
-		if (mb_strtolower($type) == 'tags') {
-			foreach ($data as $k => $d) {
-				foreach ($blacklist as $item) {
-					if ($data[$k] == null) { continue; }
-					if (in_array($item, $d['tags'])) {
+		if (mb_strtolower($type) == 'tags')
+		{
+			foreach ($data as $k => $d)
+			{
+				foreach ($blacklist as $item)
+				{
+					if ($data[$k] == null)
+					{
+						continue;
+					}
+					if (in_array($item, $d['tags']))
+					{
 						// echo "$item TAG text in black list!\n";
 						$data[$k] = null;
 						continue;
@@ -215,11 +232,18 @@ class Anekdot
 			}
 		}
 
-		if (mb_strtolower($type) == 'text') {
-			foreach ($data as $k => $d) {
-				foreach ($blacklist as $item) {
-					if ($data[$k] == null) { continue; }
-					if (stripos($d['text'], $item) !== false) {
+		if (mb_strtolower($type) == 'text')
+		{
+			foreach ($data as $k => $d)
+			{
+				foreach ($blacklist as $item)
+				{
+					if ($data[$k] == null)
+					{
+						continue;
+					}
+					if (stripos($d['text'], $item) !== false)
+					{
 						// echo "$item TEXT in black list!\n";
 						$data[$k] = null;
 						continue;
@@ -265,7 +289,7 @@ class Anekdot
 		$img = new Priler\Text2Image\Magic($text);
 
 		$img->set_mode($params['mode']);
-		$img->add_font('font',$params['font']);
+		$img->add_font('font', $params['font']);
 		$img->font = $img->get_font('font');
 		$img->text_size = $params['text_size'];
 		$img->background_color = $params['background_color'];
@@ -284,32 +308,34 @@ class Anekdot
 	{
 		$ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+		$response = curl_exec($ch);
 
-        curl_close($ch);
+		curl_close($ch);
 
-        return $response;
+		return $response;
 	}
 
 	/* Ответ */
 	private static function response($data, $output)
 	{
-		switch ($output) {
-			case 'array': return $data;
-		    case 'json' : return json_encode($data, JSON_PRETTY_PRINT);
-		    default:      return self::response(self::message('Неподдерживаемый формат', 1), self::DEFAULT_OUTPUT_TYPE);
+		switch ($output)
+		{
+			case 'array':
+				return $data;
+			case 'json':
+				return json_encode($data, JSON_PRETTY_PRINT);
+			default:
+				return self::response(self::message('Неподдерживаемый формат', 1) , self::DEFAULT_OUTPUT_TYPE);
 		}
 	}
 
 	/* Формирование сообщения + код */
 	private static function message($text = 'Неизвестная ошибка', $code = 99)
 	{
-		return [
-			'message' => $text,
-			'code'	  => $code
-		];
+		return ['message' => $text, 'code' => $code];
 	}
 }
+
