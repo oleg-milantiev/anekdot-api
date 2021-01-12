@@ -16,11 +16,15 @@
 ## Установка
 С помощью Composer:
 
-`$ composer require aethletic/anekdot-api`
+```bash
+$ composer require chipslays/anekdot-api
+```
 
 Или скачать репозиторий, либо склонировать:
 
-`$ git clone https://github.com/aethletic/anekdot-api.git`
+```bash
+$ git clone https://github.com/chipslays/anekdot-api.git
+```
 
 ## Формат данных
     Array
